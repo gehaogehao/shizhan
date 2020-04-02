@@ -1,6 +1,7 @@
 import {GETNAVLIST,GETFOCUSLIST,GETPOLICYDESCLIST,GETKINGKONGLIST,GETITEMLIST,GETETFLOORLIST,
         GETINDEXACTIVITYMODULELIST,GETCATEGORYLIST,GETFLASHSALEMODULE,DETNEWITEMLIST,GETSCENELIST,
-        GETCATEGORYL1LIST,GETCATEGORYL2LIST,GETKEYWORD,GETSEARCHLIST,GETSEARCHDATALIST} from './mutations-type'
+        GETCATEGORYL1LIST,GETCATEGORYL2LIST,GETKEYWORD,GETSEARCHLIST,GETSEARCHDATALIST,GETSHOPNAVLIST,GETRESULTLIST,
+        GETPUSHLIST} from './mutations-type'
 import http from '@/http/axios.js'
 let OK = 200
 let newOK = '200'
@@ -42,7 +43,7 @@ export default {
     },
     /* search */
     async [GETKEYWORD](store){
-        let result = await http.get('/search/init.json')
+        let result = await http.get('/xhr/search/init.json')
         if(result.code === newOK){
             store.commit(GETKEYWORD,result.data.defaultKeyword.keyword)
             store.commit(GETSEARCHLIST,result.data.hotKeywordVOList)
@@ -55,9 +56,23 @@ export default {
         for(let key in obj){
         transformData.append(key,obj[key])
         }
-        let result = await http.post('/search/searchAutoComplete.json',transformData)
+        let result = await http.post('/xhr/search/searchAutoComplete.json',transformData)
         if(result.code === newOK){
             store.commit(GETSEARCHDATALIST,result.data)
+        }
+    },
+    /* shop */
+    async [GETSHOPNAVLIST](store){
+        let result = await http.get('/topic/v1/know/navWap.json')
+        if(result.code === newOK){
+            store.commit(GETSHOPNAVLIST,result.data.navList)
+        }
+    },
+    async [GETRESULTLIST](store,page=1){
+        let result = await http.get(`/topic/v1/find/recAuto.json?page=${page}&size=5`)
+        if(result.code === newOK){
+            if(page >= 2) store.commit(GETPUSHLIST,result.data.result)
+            else store.commit(GETRESULTLIST,result.data.result)
         }
     }
 }

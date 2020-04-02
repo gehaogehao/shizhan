@@ -17,3 +17,7 @@ export const GETCATEGORYL2LIST = 'getCategoryL2List'
 export const GETKEYWORD ='getKeyWord'
 export const GETSEARCHLIST = 'getSearchList'
 export const GETSEARCHDATALIST = 'getSearchDataList'
+/* shop */
+export const GETSHOPNAVLIST = 'getShopNavList'
+export const GETRESULTLIST = 'getResultList'
+export const GETPUSHLIST = 'getPushList'

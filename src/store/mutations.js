@@ -1,6 +1,7 @@
 import {GETNAVLIST,GETFOCUSLIST,GETPOLICYDESCLIST,GETKINGKONGLIST,GETITEMLIST,GETETFLOORLIST,
         GETINDEXACTIVITYMODULELIST,GETCATEGORYLIST,GETFLASHSALEMODULE,DETNEWITEMLIST,GETSCENELIST,
-        GETCATEGORYL1LIST,GETCATEGORYL2LIST,GETKEYWORD,GETSEARCHLIST,GETSEARCHDATALIST} from './mutations-type'
+        GETCATEGORYL1LIST,GETCATEGORYL2LIST,GETKEYWORD,GETSEARCHLIST,GETSEARCHDATALIST,
+        GETSHOPNAVLIST,GETRESULTLIST,GETPUSHLIST} from './mutations-type'
 export default {
     /* index */
     [GETNAVLIST](state,list){
@@ -52,5 +53,15 @@ export default {
     },
     [GETSEARCHDATALIST](state,list){
         state.searchDataList = list
+    },
+    /* shop */
+    [GETSHOPNAVLIST](state,list){
+        state.shopNavList = list
+    },
+    [GETRESULTLIST](state,list){
+        state.resultList = list
+    },
+    [GETPUSHLIST](state,list){
+        state.resultList = state.resultList.concat(list)
     }
 }

@@ -21,12 +21,12 @@ module.exports = {
                 }
             },
             '': {
-                target: 'https://m.you.163.com/xhr',
+                target: 'https://m.you.163.com',
                 changeOrigin: true, //允许跨域
                 pathRewrite:{
                     "":""
                 }
-            }
+            },
         }
     },
     configureWebpack: {

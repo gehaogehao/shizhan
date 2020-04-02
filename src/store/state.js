@@ -17,5 +17,8 @@ export default {
     /* search */
     keyword:'',
     hotKeywordVOList:[],
-    searchDataList:[]
+    searchDataList:[],
+    /* shop */
+    shopNavList:[],
+    resultList:[]
 }
